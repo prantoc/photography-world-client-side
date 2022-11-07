@@ -1,9 +1,9 @@
 body {
-    background-color: #212529 !important;
+    background-color: #0c1222 !important;
 }
 
 /*! Navbar customize  */
-.bg-dark {
+.dark-nav-bg {
     background-color: #1e2b47 !important;
 }
 
@@ -31,7 +31,7 @@ body {
 }
 
 .bg-layer {
-    background-color: #00000082
+    background-color: #00000082;
 }
 
 /*! search-box */
@@ -41,7 +41,31 @@ body {
 }
 
 
-/* footer  */
+/*! service-card */
+.card {
+    border: none !important;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.card:hover {
+    box-shadow: 6px 10px 5px rgb(0 0 0 / 40%) !important;
+    transform: scale(1.2);
+}
+
+.card-body {
+    background: #1e2b47 !important;
+    color: #fff !important;
+}
+
+/* .card-title {
+    color: rgb(120, 119, 119) !important;
+} */
+.card-text {
+    color: #9c9c9c !important;
+}
+
+/*! footer  */
 
 .bg-footer {
     background-color: #1e2b47 !important;

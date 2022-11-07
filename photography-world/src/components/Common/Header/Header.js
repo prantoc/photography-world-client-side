@@ -6,7 +6,7 @@ import logo from '../../../assets/imgs/logo/logo.png'
 const Header = () => {
     return (
         <>
-            <Navbar bg="dark" expand="lg" className='shadow-lg p-3'>
+            <Navbar expand="lg" className='shadow-lg p-3 dark-nav-bg'>
                 <Container fluid>
                     <Navbar.Brand href="/" className='fw-bold logo'><img src={logo} alt='Logo' /> <span style={{ color: "#00a0ff" }}>Photography</span> <span style={{ color: "#64f0ff" }}>World</span></Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
