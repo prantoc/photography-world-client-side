@@ -1,3 +1,12 @@
+body {
+    background-color: #212529 !important;
+}
+
+/*! Navbar customize  */
+.bg-dark {
+    background-color: #1e2b47 !important;
+}
+
 .nav-link {
     color: #fff !important;
 }
@@ -9,4 +18,31 @@
 
 .nav-link:hover {
     color: #00a0ff !important;
+}
+
+
+/*! home-top-banner */
+
+.home-top-banner {
+    background: url('../../imgs/banner/banner.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-layer {
+    background-color: #00000082
+}
+
+/*! search-box */
+.form-control:focus {
+    border-color: #fff !important;
+    box-shadow: none !important;
+}
+
+
+/* footer  */
+
+.bg-footer {
+    background-color: #1e2b47 !important;
 }

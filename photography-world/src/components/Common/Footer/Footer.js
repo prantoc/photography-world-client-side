@@ -2,9 +2,9 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div>
-            footer
-        </div>
+        <footer className="bg-footer text-secondary text-center py-5">
+            <p>Copyright ©2022 <span style={{ color: "#fff" }}>Pranto</span> - All rights reserved.</p>
+        </footer>
     );
 };
 
