@@ -6,9 +6,9 @@ import logo from '../../../assets/imgs/logo/logo.png'
 const Header = () => {
     return (
         <>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="dark" expand="lg" className='shadow-lg p-3 mb-5'>
                 <Container>
-                    <Navbar.Brand href="/" className='fw-bold logo'><img src={logo} alt='Logo' width={40} /></Navbar.Brand>
+                    <Navbar.Brand href="/" className='fw-bold logo'><img src={logo} alt='Logo' /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
