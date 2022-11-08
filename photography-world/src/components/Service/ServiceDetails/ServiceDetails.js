@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
 import { FaPlus, FaStar } from 'react-icons/fa';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import banar from '../../../assets/imgs/banner/banner.png'
 const ServiceDetails = () => {
     return (
@@ -11,7 +12,11 @@ const ServiceDetails = () => {
                         <Card className='shadow rounded border-0 text-white service-details-card'>
                             <Card.Header className='border-0' as="h3">loren ipsum is the best for default word</Card.Header>
                             <Card.Body>
-                                <Card.Img variant="top" src={banar} className="img-fluid mb-4 service-details-img" />
+                                <PhotoProvider>
+                                    <PhotoView src={banar}>
+                                        <Card.Img variant="top" src={banar} className="img-fluid mb-4 service-details-img" />
+                                    </PhotoView>
+                                </PhotoProvider>
                                 <Card.Text className='lh-base'>
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed odio recusandae consequatur illum, asperiores ad accusamus est ipsam fuga reprehenderit aliquid, veniam nam quia voluptates suscipit voluptate velit saepe! Ex.
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed odio recusandae consequatur illum, asperiores ad accusamus est ipsam fuga reprehenderit aliquid, veniam nam quia voluptates suscipit voluptate velit saepe! Ex.

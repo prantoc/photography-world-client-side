@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 import banar from '../../../assets/imgs/banner/banner.png'
 const ServiceCard = ({ service }) => {
     return (
@@ -7,7 +8,11 @@ const ServiceCard = ({ service }) => {
             <Col key={service} md={4} className="animate__animated animate__pulse px-lg-5 mb-lg-5">
                 {/* <Link to={`/category/${_id}`} className='nav-link p-3'> */}
                 <Card className='custom-card'>
-                    <Card.Img variant="top" src={banar} style={{ height: '100%' }} />
+                    <PhotoProvider>
+                        <PhotoView src={banar}>
+                            <Card.Img variant="top" src={banar} style={{ height: '100%' }} />
+                        </PhotoView>
+                    </PhotoProvider>
                     <Card.Body>
                         <Card.Title>Some quick example text</Card.Title>
                         <Card.Text>
