@@ -4,6 +4,7 @@ import SignUp from "../../components/Auth/SignUp/SignUp";
 import Blog from "../../components/Blog/Blog";
 import Error from "../../components/Error/Error";
 import Home from "../../components/Home/Home";
+import AddService from "../../components/Service/AddService/AddService";
 import ServiceDetails from "../../components/Service/ServiceDetails/ServiceDetails";
 import Services from "../../components/Service/Services/Services";
 import Layout from "../../layout/Layout";
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
             {
                 path: "/blog",
                 element: <Blog></Blog>
+            },
+            {
+                path: "/add-service",
+                element: <AddService></AddService>
             },
             {
                 path: "/login",

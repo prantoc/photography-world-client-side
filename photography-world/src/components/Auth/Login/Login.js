@@ -6,7 +6,7 @@ import google from '../../../assets/imgs/login/google.png'
 import facebook from '../../../assets/imgs/login/facebook.png'
 import github from '../../../assets/imgs/login/github.png'
 import { errorToast, successToast } from '../../../toast/Toaster';
-import { FaArrowRight, FaPlus } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 const Login = () => {
     const { userSignIn, signInByGoogle } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
