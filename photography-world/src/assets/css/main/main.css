@@ -46,6 +46,9 @@ body {
     border: none !important;
     cursor: pointer;
     transition: 0.4s ease;
+    width: 18rem !important;
+    background: #1e2b47 !important;
+    color: #fff !important;
 }
 
 .card:hover {
@@ -53,10 +56,6 @@ body {
     transform: scale(1.2);
 }
 
-.card-body {
-    background: #1e2b47 !important;
-    color: #fff !important;
-}
 
 /* .card-title {
     color: rgb(120, 119, 119) !important;
@@ -65,8 +64,52 @@ body {
     color: #9c9c9c !important;
 }
 
+/*! customer review slider */
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 250px;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+}
+
+/*! home-bottom-banner */
+.home-bottom-banner {
+    background: url('../../imgs/banner/banner2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-layer {
+    background-color: #00000082;
+}
+
 /*! footer  */
 
 .bg-footer {
     background-color: #1e2b47 !important;
+}
+
+
+
+/*? media query ?*/
+@media (max-width: 768px) {
+    .card {
+        border: none !important;
+        cursor: pointer;
+        transition: 0.4s ease;
+        width: 14rem !important;
+    }
 }
