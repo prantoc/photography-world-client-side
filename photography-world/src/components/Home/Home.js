@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row, Form, Button, Card, Image } from 'react-bootstrap';
-import { FaStar } from "react-icons/fa";
+import { FaArrowRight, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
@@ -52,13 +52,14 @@ const Home = () => {
                             </Col>
                         )
                     }
+                    <Button variant="primary px-5 py-2 rounded-pill col-2 text-center mx-auto">See All <FaArrowRight></FaArrowRight></Button>
                 </Row>
             </Container>
             {/* pictures-preview */}
             <Container fluid>
                 <Row>
                     <Col md={12} className='py-5'>
-                        <h1 className='text-center' style={{ color: '#00a0ff', fontWeight: 'bold' }}>Customer Reviews</h1>
+                        <h1 className='text-center' style={{ color: '#00a0ff', fontWeight: 'bold' }}>Recent Customer Reviews</h1>
                         <Swiper
                             effect={"coverflow"}
                             grabCursor={true}
@@ -81,7 +82,7 @@ const Home = () => {
                         >
                             {
                                 [...Array(90).keys()].map(items =>
-                                    <SwiperSlide>
+                                    <SwiperSlide key={items}>
                                         <Card className='card-bg rounded'>
                                             <Card.Header className='d-flex justify-content-between align-items-center'>
                                                 <div className='d-flex'>
