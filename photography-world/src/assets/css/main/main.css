@@ -107,6 +107,18 @@ body {
     background-color: #00000082;
 }
 
+
+/*! auth-card */
+.auth-card {
+    border: none !important;
+    cursor: pointer;
+    transition: 0.4s ease;
+    width: 28rem !important;
+    background: #1e2b47 !important;
+    color: #fff !important;
+}
+
+
 /*! footer  */
 
 .bg-footer {

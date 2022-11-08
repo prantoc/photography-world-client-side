@@ -1,9 +1,21 @@
-import React from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Container, Dropdown, Image, Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/imgs/logo/logo.png'
+import avatar from '../../../assets/imgs/user/man.png'
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { errorToast, successToast } from '../../../toast/Toaster';
 const Header = () => {
+    const { user, logoutUser } = useContext(AuthContext)
+    const userLogout = () => {
+        logoutUser()
+            .then(() => {
+                successToast(' Sign-out successful');
+            }).catch((e) => {
+                errorToast(e);
+            });
+    }
     return (
         <>
             <Navbar expand="lg" className='shadow-lg p-3 dark-nav-bg'>
@@ -22,37 +34,31 @@ const Header = () => {
                             <LinkContainer to="services">
                                 <Nav.Link>Services</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="/faq">
-                                <Nav.Link>FAQ</Nav.Link>
-                            </LinkContainer>
                             <LinkContainer to="blog">
                                 <Nav.Link>Blog</Nav.Link>
                             </LinkContainer>
                         </Nav>
-
-                        <Nav className='py-1'>
-                            <LinkContainer to="/login" >
-                                <Link className="nav-link">Login</Link>
-                            </LinkContainer>
-                            <LinkContainer to="/signup">
-                                <Link className="nav-link">SignUp</Link>
-                            </LinkContainer>
-                        </Nav>
-
-                        {/* {
+                        {
                             user
                                 ?
-                                <Navbar.Text className='d-flex' title={user.displayName}>
-                                    <Dropdown>
-                                        <Dropdown.Toggle className='border border-1 py-1' variant="outline-light" id="dropdown-basic">
-                                            <Image roundedCircle style={{ height: '28px' }} src={user.photoURL ? user.photoURL : avatar} />
-                                        </Dropdown.Toggle>
-                                        <Dropdown.Menu className='position-absolute end-100 translate-middle-x' style={{ zIndex: '9999' }}>
-                                            <Dropdown.Item >{user?.displayName}</Dropdown.Item>
-                                            <Dropdown.Item onClick={userLogout}>Logout</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </Navbar.Text>
+                                <>
+                                    <Nav className='py-1'>
+                                        <LinkContainer to="/login" >
+                                            <Link className="nav-link">Add Service</Link>
+                                        </LinkContainer>
+                                    </Nav>
+                                    <Navbar.Text className='d-flex' title={user.displayName}>
+                                        <Dropdown>
+                                            <Dropdown.Toggle className='border border-1 py-1' variant="outline-light" id="dropdown-basic">
+                                                <Image roundedCircle style={{ height: '28px' }} src={user.photoURL ? user.photoURL : avatar} />
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu className='position-absolute end-100 translate-middle-x' style={{ zIndex: '9999' }}>
+                                                <Dropdown.Item >{user?.displayName}</Dropdown.Item>
+                                                <Dropdown.Item onClick={userLogout}>Logout</Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                    </Navbar.Text>
+                                </>
 
                                 :
                                 <Nav className='py-1'>
@@ -63,7 +69,7 @@ const Header = () => {
                                         <Link className="nav-link">SignUp</Link>
                                     </LinkContainer>
                                 </Nav>
-                        } */}
+                        }
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
