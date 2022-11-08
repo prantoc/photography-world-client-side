@@ -52,7 +52,7 @@ const Home = () => {
                             </Col>
                         )
                     }
-                    <Button variant="primary px-5 py-2 rounded-pill col-2 text-center mx-auto">See All <FaArrowRight></FaArrowRight></Button>
+                    <Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto">See All <FaArrowRight></FaArrowRight></Button>
                 </Row>
             </Container>
             {/* pictures-preview */}
