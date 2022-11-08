@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row } from 'react-bootstrap';
-import ServiceCard from './ServiceCard';
+import ServiceCard from '../ServiceCard/ServiceCard';
 const Services = () => {
     return (
         <Container className='py-5 d-flex justify-content-center'>

@@ -43,7 +43,7 @@ body {
 
 
 /*! service-card */
-.card {
+.custom-card {
     border: none !important;
     cursor: pointer;
     transition: 0.4s ease;
@@ -52,17 +52,27 @@ body {
     color: #fff !important;
 }
 
-.card:hover {
+.custom-card:hover {
     box-shadow: 6px 10px 5px rgb(0 0 0 / 40%) !important;
     transform: scale(1.2);
 }
 
-
-/* .card-title {
-    color: rgb(120, 119, 119) !important;
-} */
 .card-text {
     color: #9c9c9c !important;
+}
+
+/*! service-details-card */
+.service-details-card {
+    background: #1e2b47 !important;
+}
+
+.service-details-img {
+    height: 350px !important;
+    cursor: pointer;
+}
+
+.service-bg-layer {
+    background-color: rgb(0 0 0 / 86%) !important;
 }
 
 /*! customer review slider */

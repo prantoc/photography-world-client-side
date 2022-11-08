@@ -9,7 +9,7 @@ import "swiper/css/pagination";
 // import required modules
 import { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import banar from '../../assets/imgs/banner/banner.png'
-import ServiceCard from '../Services/ServiceCard';
+import ServiceCard from '../Service/ServiceCard/ServiceCard';
 const Home = () => {
     return (
         <>
@@ -70,7 +70,7 @@ const Home = () => {
                             {
                                 [...Array(90).keys()].map(items =>
                                     <SwiperSlide key={items}>
-                                        <Card className='card-bg rounded'>
+                                        <Card className='card-bg rounded custom-card'>
                                             <Card.Header className='d-flex justify-content-between align-items-center'>
                                                 <div className='d-flex'>
                                                     <Image roundedCircle style={{ height: '56px' }} src={banar} />

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
-import banar from '../../assets/imgs/banner/banner.png'
+import banar from '../../../assets/imgs/banner/banner.png'
 const ServiceCard = ({ service }) => {
     return (
         <>
             <Col key={service} md={4} className="animate__animated animate__pulse px-lg-5 mb-lg-5">
                 {/* <Link to={`/category/${_id}`} className='nav-link p-3'> */}
-                <Card>
+                <Card className='custom-card'>
                     <Card.Img variant="top" src={banar} style={{ height: '100%' }} />
                     <Card.Body>
                         <Card.Title>Some quick example text</Card.Title>
