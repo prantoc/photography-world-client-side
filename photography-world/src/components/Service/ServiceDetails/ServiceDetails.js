@@ -2,32 +2,36 @@ import React from 'react';
 import { Button, Card, Col, Container, Image, Row } from 'react-bootstrap';
 import { FaPlus, FaStar } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { useLoaderData } from 'react-router-dom';
 import banar from '../../../assets/imgs/banner/banner.png'
 const ServiceDetails = () => {
+    const service = useLoaderData();
+    const { _id, service_name, img_url, price, desc } = service;
     return (
         <>
             <Container>
                 <Row>
                     <Col md={12} className="my-5" >
                         <Card className='shadow rounded border-0 text-white service-details-card'>
-                            <Card.Header className='border-0' as="h3">loren ipsum is the best for default word</Card.Header>
+                            <Card.Header className='border-0' as="h3">{service_name}</Card.Header>
                             <Card.Body>
-                                <PhotoProvider>
-                                    <PhotoView src={banar}>
-                                        <Card.Img variant="top" src={banar} className="img-fluid mb-4 service-details-img" />
+                                <PhotoProvider className=''>
+                                    <PhotoView src={img_url}>
+                                        <Card.Img variant="top" src={img_url} className="mb-4 service-details-img mx-auto text-center" />
                                     </PhotoView>
                                 </PhotoProvider>
                                 <Card.Text className='lh-base'>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed odio recusandae consequatur illum, asperiores ad accusamus est ipsam fuga reprehenderit aliquid, veniam nam quia voluptates suscipit voluptate velit saepe! Ex.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed odio recusandae consequatur illum, asperiores ad accusamus est ipsam fuga reprehenderit aliquid, veniam nam quia voluptates suscipit voluptate velit saepe! Ex.
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed odio recusandae consequatur illum, asperiores ad accusamus est ipsam fuga reprehenderit aliquid, veniam nam quia voluptates suscipit voluptate velit saepe! Ex.
+                                    {desc}
                                 </Card.Text>
                             </Card.Body>
-                            <Card.Footer className="text-muted">
+                            <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
                                 <span className="badge bg-primary text-wrap" style={{ width: "12rem" }}>
                                     Total Reviews
                                     <FaStar className='text-warning mx-1' />
                                     <small>4000</small>
+                                </span>
+                                <span>
+                                    <h4 className='text-white'>${price}</h4>
                                 </span>
                             </Card.Footer>
                         </Card>

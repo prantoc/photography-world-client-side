@@ -67,7 +67,8 @@ body {
 }
 
 .service-details-img {
-    height: 350px !important;
+    height: 400px !important;
+    width: 800px !important;
     cursor: pointer;
 }
 

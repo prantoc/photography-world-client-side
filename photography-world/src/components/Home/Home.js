@@ -10,6 +10,7 @@ import "swiper/css/pagination";
 import { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import banar from '../../assets/imgs/banner/banner.png'
 import ServiceCard from '../Service/ServiceCard/ServiceCard';
+import { Link } from 'react-router-dom';
 const Home = () => {
     const [services, setServices] = useState([]);
     useEffect(() => {
@@ -46,7 +47,7 @@ const Home = () => {
                             <ServiceCard key={service._id} service={service}></ServiceCard>
                         )
                     }
-                    <Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto">See All <FaArrowRight></FaArrowRight></Button>
+                    <Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto"><Link className='nav-link' to="/services">See All <FaArrowRight></FaArrowRight></Link> </Button>
                 </Row>
             </Container>
             {/* pictures-preview */}
