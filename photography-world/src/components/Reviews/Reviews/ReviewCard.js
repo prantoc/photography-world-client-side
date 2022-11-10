@@ -1,28 +1,29 @@
 import React from 'react';
 import { Card, Image } from 'react-bootstrap';
 import { FaStar } from 'react-icons/fa';
-import banar from '../../../assets/imgs/banner/banner.png'
-const ReviewCard = () => {
+import avatar from '../../../assets/imgs/user/man.png'
+const ReviewCard = ({ getReview }) => {
+    const { rate, review, userName, userPhoto, createdAT } = getReview;
     return (
         <>
             <Card className='mb-5 border-0  rounded service-details-card service-details-card review-card-boxShadow mt-5'>
                 <Card.Header className='d-flex justify-content-between align-items-center text-white'>
                     <div className='d-flex'>
-                        <Image roundedCircle style={{ height: '56px' }} src={banar} />
+                        <Image roundedCircle style={{ height: '56px' }} src={userPhoto} onError={(e) => e.target.src = avatar} />
                         <div className='ms-3'>
-                            <span className='fw-bold d-block'>Pranto</span>
-                            <span className='text-secondary'>10/11/2022</span>
+                            <span className='fw-bold d-block'>{userName ? userName : 'Anonymous'}</span>
+                            <span className='text-secondary'>{createdAT}</span>
                         </div>
 
                     </div>
                     <div className="text-muted">
                         <FaStar className='text-warning me-1' />
-                        <small>4.5</small>
+                        <small>{rate}</small>
                     </div>
                 </Card.Header>
                 <Card.Body>
                     <Card.Text className='mt-2 text-secondary'>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium laboriosam voluptatum, culpa laborum iure nobis aut optio sapiente fugit dolorem quidem neque qui beatae, impedit sequi tenetur dignissimos deleniti ex.
+                        {review}
                     </Card.Text>
                 </Card.Body>
             </Card>

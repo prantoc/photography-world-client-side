@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row } from 'react-bootstrap';
 import { FaPlus, FaStar } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
@@ -9,9 +9,32 @@ import { errorToast, successToast } from '../../../toast/Toaster';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 const ServiceDetails = () => {
     const { loading, user } = useContext(AuthContext)
+    console.log(user);
     const service = useLoaderData();
     const { _id, service_name, img_url, price, desc } = service;
 
+    const [newReview, setNewReview] = useState(false);
+    const [reviews, setReviews] = useState();
+
+    // get-reviews 
+    useEffect(() => {
+        const url = `http://localhost:5000/reviews?id=${service?._id}`;
+        if (newReview) {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => setReviews(data))
+                .catch(err => console.log(err))
+        } else {
+            fetch(url)
+                .then(res => res.json())
+                .then(data => setReviews(data))
+                .catch(err => console.log(err))
+        }
+
+    }, [service?._id, newReview])
+
+
+    //? add-review 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -23,13 +46,17 @@ const ServiceDetails = () => {
         const review = form.review.value
         const serviceId = _id
         const userId = user.uid;
+        const userName = user.displayName;
+        const userPhoto = user.photoURL;
         const createdAT = new Date()
 
-        const reviews = {
+        const addReview = {
             rate,
             review,
             serviceId,
             userId,
+            userName,
+            userPhoto,
             createdAT
         }
 
@@ -39,7 +66,7 @@ const ServiceDetails = () => {
                 'content-type': 'application/json',
                 // authorization: `Bearer ${localStorage.getItem('genius-token')}`
             },
-            body: JSON.stringify(reviews),
+            body: JSON.stringify(addReview),
 
         })
             .then(res => res.json())
@@ -48,6 +75,7 @@ const ServiceDetails = () => {
                     successToast('successfully added review')
                     form.reset()
                     setShow(false)
+                    setNewReview(true)
                 }
             })
             .catch(err => {
@@ -77,7 +105,7 @@ const ServiceDetails = () => {
                                 <span className="badge bg-primary text-wrap" style={{ width: "12rem" }}>
                                     Total Reviews
                                     <FaStar className='text-warning mx-1' />
-                                    <small>4000</small>
+                                    <small>{reviews && reviews.length}</small>
                                 </span>
                                 <span>
                                     <h4 className='text-white'>${price}</h4>
@@ -90,7 +118,15 @@ const ServiceDetails = () => {
                                     <h1 className=' text-white'>Uers Reviews</h1>
                                     <Button className='py-1' variant='primary' onClick={handleShow}><FaPlus></FaPlus>Add Review</Button>
                                 </div>
-                                <ReviewCard></ReviewCard>
+                                {
+                                    reviews &&
+                                        reviews.length > 0 ?
+                                        reviews.map(review => <ReviewCard key={review._id} getReview={review}></ReviewCard>)
+                                        :
+
+                                        <h5 className='text-center text-white'>No reviews found!</h5>
+                                }
+                                {/* {reviews.length} */}
                                 <ReviewModal show={show} service={service_name} handleClose={handleClose} handleAddReview={handleAddReview} id={_id} loading={loading}></ReviewModal>
                             </div>
                         </div>
