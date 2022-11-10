@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import { errorToast, successToast } from '../../../toast/Toaster';
 import MyReviewRow from './MyReviewRow';
 
 const MyReview = () => {
+    useTitle('My-Reviews')
     const { user, setLoading, loading } = useContext(AuthContext)
     const [reviews, setReviews] = useState();
     // get-reviews 

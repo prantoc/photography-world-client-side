@@ -11,8 +11,11 @@ import { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import banar from '../../assets/imgs/banner/banner.png'
 import ServiceCard from '../Service/ServiceCard/ServiceCard';
 import { Link } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 const Home = () => {
     const [services, setServices] = useState([]);
+
+    useTitle('Home')
     useEffect(() => {
         fetch(`http://localhost:5000/services`)
             .then(res => res.json())

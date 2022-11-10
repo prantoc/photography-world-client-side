@@ -2,10 +2,12 @@ import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import { errorToast, successToast } from '../../../toast/Toaster';
 
 const AddService = () => {
     const { loading, user } = useContext(AuthContext)
+    useTitle('Add-Service')
     const handleAddService = e => {
         e.preventDefault()
         const form = e.target

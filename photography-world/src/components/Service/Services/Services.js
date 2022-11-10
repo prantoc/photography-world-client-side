@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Spinner } from 'react-bootstrap';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import useTitle from '../../../hooks/useTitle';
 import ServiceCard from '../ServiceCard/ServiceCard';
 const Services = () => {
     const [services, setServices,] = useState([]);
+    useTitle('Services')
     const { setLoading, loading } = useContext(AuthContext)
     useEffect(() => {
         fetch(`http://localhost:5000/services`)

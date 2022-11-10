@@ -7,7 +7,9 @@ import facebook from '../../../assets/imgs/login/facebook.png'
 import github from '../../../assets/imgs/login/github.png'
 import { errorToast, successToast } from '../../../toast/Toaster';
 import { FaArrowRight } from 'react-icons/fa';
+import useTitle from '../../../hooks/useTitle';
 const SignUp = () => {
+    useTitle('SignUp')
     const { emPasSignUp, logoutUser, signInByGoogle } = useContext(AuthContext);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();

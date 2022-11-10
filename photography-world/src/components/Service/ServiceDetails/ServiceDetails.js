@@ -8,11 +8,12 @@ import ReviewCard from '../../Reviews/Reviews/ReviewCard';
 import { errorToast, successToast } from '../../../toast/Toaster';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import { Link } from 'react-router-dom';
+import useTitle from '../../../hooks/useTitle';
 const ServiceDetails = () => {
     const { loading, user, setLoading } = useContext(AuthContext)
     const service = useLoaderData();
     const { _id, service_name, img_url, price, desc } = service;
-
+    useTitle(`${service_name}`)
     const [newReview, setNewReview] = useState(false);
     const [reviews, setReviews] = useState();
 
