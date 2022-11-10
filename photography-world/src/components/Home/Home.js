@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Col, Container, Row, Form, Button, Card, Image } from 'react-bootstrap';
+import React, { useContext, useEffect, useState } from 'react';
+import { Col, Container, Row, Form, Button, Card, Image, Spinner } from 'react-bootstrap';
 import { FaArrowRight, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -12,16 +12,20 @@ import banar from '../../assets/imgs/banner/banner.png'
 import ServiceCard from '../Service/ServiceCard/ServiceCard';
 import { Link } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 const Home = () => {
     const [services, setServices] = useState([]);
-
+    const { setLoading, loading } = useContext(AuthContext)
     useTitle('Home')
     useEffect(() => {
         fetch(`http://localhost:5000/services`)
             .then(res => res.json())
-            .then(data => setServices(data))
+            .then(data => {
+                setServices(data)
+                setLoading(false)
+            })
             .catch(err => console.log(err))
-    }, [])
+    }, [setLoading])
     return (
         <>
             {/* banner-section  */}
@@ -46,11 +50,19 @@ const Home = () => {
             <Container className='py-5 d-flex justify-content-center'>
                 <Row>
                     {
-                        services.slice(0, 3).map(service =>
-                            <ServiceCard key={service._id} service={service}></ServiceCard>
-                        )
+                        loading
+                            ?
+                            <Spinner animation="border" role="status" className='text-white'>
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                            :
+                            <>
+                                {services.slice(0, 3).map(service =>
+                                    <ServiceCard key={service._id} service={service}></ServiceCard>
+                                )}
+                                <Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto"><Link className='nav-link' to="/services">See All <FaArrowRight></FaArrowRight></Link> </Button>
+                            </>
                     }
-                    <Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto"><Link className='nav-link' to="/services">See All <FaArrowRight></FaArrowRight></Link> </Button>
                 </Row>
             </Container>
             {/* pictures-preview */}
