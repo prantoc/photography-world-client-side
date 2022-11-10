@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Col, Container, Row, Spinner, Table } from 'react-bootstrap';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { errorToast, successToast } from '../../../toast/Toaster';
 import MyReviewRow from './MyReviewRow';
 
 const MyReview = () => {
@@ -23,6 +24,25 @@ const MyReview = () => {
 
     }, [user?.uid, setLoading])
 
+    const deleteReview = (id) => {
+        const proceed = window.confirm('Are your sure you want to cancel this order')
+        if (proceed) {
+            setLoading(true)
+            fetch(`http://localhost:5000/review-delete/${id}`, {
+                method: "DELETE",
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('genius-token')}`
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    successToast('The review deleted successfully')
+                    setReviews(data)
+                    setLoading(false)
+                })
+                .catch(err => errorToast(err))
+        }
+    }
 
     return (
         <Container>
@@ -35,6 +55,7 @@ const MyReview = () => {
                                 <th>Rating</th>
                                 <th>Review</th>
                                 <th>Reviewd At</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         {loading ?
@@ -47,7 +68,7 @@ const MyReview = () => {
                                 {
                                     reviews &&
                                         reviews.length > 0 ?
-                                        reviews.map(review => <MyReviewRow key={review._id} allReviews={review}></MyReviewRow>)
+                                        reviews.map(review => <MyReviewRow key={review._id} allReviews={review} deleteReview={deleteReview}></MyReviewRow>)
                                         :
                                         <tr>
                                             <h5 className='text-center text-white py-5'>No reviews found!</h5>

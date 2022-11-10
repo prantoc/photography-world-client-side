@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Button, Spinner } from 'react-bootstrap';
-import { FaStar } from 'react-icons/fa';
+import { FaEdit, FaStar, FaTrash } from 'react-icons/fa';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
-const MyReviewRow = ({ allReviews }) => {
+const MyReviewRow = ({ allReviews, deleteReview }) => {
     const { setLoading, loading } = useContext(AuthContext)
-    const { rate, review, createdAT } = allReviews
+    const { _id, rate, review, createdAT } = allReviews
     const [service, setService] = useState();
 
     // get-reviews 
@@ -33,8 +33,7 @@ const MyReviewRow = ({ allReviews }) => {
                         <td><FaStar className='text-warning mx-1' />{rate}</td>
                         <td>{review}</td>
                         <td>{createdAT}</td>
-                        <td>{createdAT}</td>
-                        <td><Button variant='danger'></Button></td>
+                        <td><Button variant='primary' className='me-2'><FaEdit></FaEdit></Button><Button onClick={() => deleteReview(_id)} variant='danger'><FaTrash></FaTrash></Button></td>
                     </tr>}
         </>
     );
