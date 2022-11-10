@@ -1,25 +1,30 @@
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import banar from '../../../assets/imgs/banner/banner.png'
 const ServiceCard = ({ service }) => {
+    const { _id, service_name, img_url, price, desc } = service;
     return (
         <>
-            <Col key={service} md={4} className="animate__animated animate__pulse px-lg-5 mb-lg-5">
+            <Col md={4} className="animate__animated animate__pulse px-lg-5 mb-lg-5">
                 {/* <Link to={`/category/${_id}`} className='nav-link p-3'> */}
                 <Card className='custom-card'>
                     <PhotoProvider>
-                        <PhotoView src={banar}>
-                            <Card.Img variant="top" src={banar} style={{ height: '100%' }} />
+                        <PhotoView src={img_url}>
+                            <Card.Img variant="top" src={img_url} style={{ height: '200px' }} />
                         </PhotoView>
                     </PhotoProvider>
                     <Card.Body>
-                        <Card.Title>Some quick example text</Card.Title>
+                        <Card.Title>{service_name}</Card.Title>
                         <Card.Text>
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
+                            {
+                                desc.length > 80
+                                    ?
+                                    desc.slice(0, 80)
+                                    :
+                                    desc
+                            }
                         </Card.Text>
-                        <span className='fw-bold' style={{ color: "#00a0ff" }}>$200</span>
+                        <span className='fw-bold' style={{ color: "#00a0ff" }}>${price}</span>
                     </Card.Body>
                 </Card>
                 {/* </Link> */}

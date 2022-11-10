@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row, Form, Button, Card, Image } from 'react-bootstrap';
 import { FaArrowRight, FaStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,6 +11,13 @@ import { Autoplay, EffectCoverflow, Pagination } from "swiper";
 import banar from '../../assets/imgs/banner/banner.png'
 import ServiceCard from '../Service/ServiceCard/ServiceCard';
 const Home = () => {
+    const [services, setServices] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:5000/services`)
+            .then(res => res.json())
+            .then(data => setServices(data))
+            .catch(err => console.log(err))
+    }, [])
     return (
         <>
             {/* banner-section  */}
@@ -35,8 +42,8 @@ const Home = () => {
             <Container className='py-5 d-flex justify-content-center'>
                 <Row>
                     {
-                        [...Array(3).keys()].map(service =>
-                            <ServiceCard key={service} service={service}></ServiceCard>
+                        services.slice(0, 3).map(service =>
+                            <ServiceCard key={service._id} service={service}></ServiceCard>
                         )
                     }
                     <Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto">See All <FaArrowRight></FaArrowRight></Button>
