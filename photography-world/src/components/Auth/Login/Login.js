@@ -26,11 +26,7 @@ const Login = () => {
                 successToast(`Hi,${user.displayName}  You Logged in successfully`);
                 setLoading(false)
                 form.reset();
-                if (user.emailVerified) {
-                    navigate(from, { replace: true });
-                } else {
-                    navigate('/verify-email')
-                }
+                navigate(from, { replace: true });
             })
             .catch((e) => {
                 const errorMessage = e.message;
