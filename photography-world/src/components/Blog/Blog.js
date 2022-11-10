@@ -9,31 +9,31 @@ const Blog = () => {
             <Container className='my-5'>
                 <Row>
                     <Col col={12}>
-                        <Card className='shadow-lg mb-5 rounded text-secondary'>
+                        <Card className=' main-review-card review-card-boxShadow mb-5 rounded text-white'>
                             <Card.Body>
                                 <Card.Title >
-                                    What is cors?
+                                    Difference between SQL and NoSQL?
                                 </Card.Title>
                                 <Card.Text>
-                                    Cross-origin resource sharing (CORS) is a browser security feature that restricts cross-origin HTTP requests that are initiated from scripts running in the browser. If your REST API's resources receive non-simple cross-origin HTTP requests, you need to enable CORS support.
+                                    SQL is the programming language used to interface with relational databases. (Relational databases model data as records in rows and tables with logical links between them). NoSQL is a class of DBMs that are non-relational and generally do not use SQL.
                                 </Card.Text>
                                 <Card.Title >
-                                    Why are you using firebase? What other options do you have to implement authentication?
+                                    What is JWT, and how does it work?
                                 </Card.Title>
                                 <Card.Text>
-                                    Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook and Twitter, and more.
+                                    JSON Web Token (JWT) is an open standard for securely transmitting information between parties as JSON object.
                                 </Card.Text>
                                 <Card.Title >
-                                    How does the private route work?
+                                    What is the difference between javascript and NodeJS?
                                 </Card.Title>
                                 <Card.Text>
-                                    The private route component is similar to the public route, the only change is that redirect URL and authenticate condition. If the user is not authenticated he will be redirected to the login page and the user can only access the authenticated routes If he is authenticated (Logged in).
+                                    JavaScript is a simple programming language that can be used with any browser that has the JavaScript Engine installed. Node. js, on the other hand, is an interpreter or execution environment for the JavaScript programming language.
                                 </Card.Text>
                                 <Card.Title >
-                                    What is Node? How does Node work?
+                                    How does NodeJS handle multiple requests at the same time?
                                 </Card.Title>
                                 <Card.Text>
-                                    Node. js is a JavaScript runtime environment that achieves low latency and high throughput by taking a “non-blocking” approach to serving requests. In other words, Node. js wastes no time or resources on waiting for I/O requests to return.
+                                    How NodeJS handle multiple client requests? NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them.
                                 </Card.Text>
                             </Card.Body>
                         </Card>
