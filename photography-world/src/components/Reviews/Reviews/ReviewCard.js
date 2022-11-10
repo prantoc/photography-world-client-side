@@ -5,8 +5,8 @@ import banar from '../../../assets/imgs/banner/banner.png'
 const ReviewCard = () => {
     return (
         <>
-            <Card className='mb-5 shadow border-0 bg-body rounded service-details-card'>
-                <Card.Header className='bg-light d-flex justify-content-between align-items-center'>
+            <Card className='mb-5 border-0  rounded service-details-card service-details-card review-card-boxShadow mt-5'>
+                <Card.Header className='d-flex justify-content-between align-items-center text-white'>
                     <div className='d-flex'>
                         <Image roundedCircle style={{ height: '56px' }} src={banar} />
                         <div className='ms-3'>

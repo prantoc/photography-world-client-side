@@ -84,7 +84,7 @@ const ServiceDetails = () => {
                                 </span>
                             </Card.Footer>
                         </Card>
-                        <div className="card service-details-card mt-2">
+                        <div className="card  main-review-card review-card-boxShadow mt-2">
                             <div className="card-body">
                                 <div className='d-flex justify-content-between align-items-center'>
                                     <h1 className=' text-white'>Uers Reviews</h1>
