@@ -27,7 +27,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/service/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/service/${params.id}`),
+                loader: ({ params }) => fetch(`https://b6a11-service-review-server-side-prantoc.vercel.app/service/${params.id}`),
                 element: <ServiceDetails></ServiceDetails>
             },
             {

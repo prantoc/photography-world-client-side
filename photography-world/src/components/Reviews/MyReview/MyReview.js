@@ -11,7 +11,7 @@ const MyReview = () => {
     const [reviews, setReviews] = useState();
     // get-reviews 
     useEffect(() => {
-        const url = `http://localhost:5000/user-review?id=${user?.uid}`;
+        const url = `https://b6a11-service-review-server-side-prantoc.vercel.app/user-review?id=${user?.uid}`;
 
         fetch(url, {
             headers: {
@@ -38,7 +38,7 @@ const MyReview = () => {
         const proceed = window.confirm('Are your sure you want to cancel this order')
         if (proceed) {
             setLoading(true)
-            fetch(`http://localhost:5000/review-delete/${id}`, {
+            fetch(`https://b6a11-service-review-server-side-prantoc.vercel.app/review-delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     authorization: `Bearer ${localStorage.getItem('ph')}`
@@ -66,7 +66,7 @@ const MyReview = () => {
             return errorToast("You must set a review!");
 
         }
-        fetch(`http://localhost:5000/review-update/${id}`, {
+        fetch(`https://b6a11-service-review-server-side-prantoc.vercel.app/review-update/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json',

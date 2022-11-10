@@ -27,7 +27,7 @@ const AddService = () => {
             createdAT
         }
 
-        fetch(`http://localhost:5000/add-service`, {
+        fetch(`https://b6a11-service-review-server-side-prantoc.vercel.app/add-service`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

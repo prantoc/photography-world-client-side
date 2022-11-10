@@ -16,7 +16,7 @@ const MyReviewRow = ({ allReviews, deleteReview, updateReview }) => {
 
     // get-reviews 
     useEffect(() => {
-        const url = `http://localhost:5000/services-by-id?id=${allReviews?.serviceId}`;
+        const url = `https://b6a11-service-review-server-side-prantoc.vercel.app/services-by-id?id=${allReviews?.serviceId}`;
 
         fetch(url)
             .then(res => res.json())

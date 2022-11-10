@@ -19,7 +19,7 @@ const ServiceDetails = () => {
 
     // get-reviews 
     useEffect(() => {
-        const url = `http://localhost:5000/reviews?id=${service?._id}`;
+        const url = `https://b6a11-service-review-server-side-prantoc.vercel.app/reviews?id=${service?._id}`;
         if (newReview) {
             fetch(url, {
                 headers: {
@@ -75,7 +75,7 @@ const ServiceDetails = () => {
             createdAT
         }
 
-        fetch(`http://localhost:5000/add-review`, {
+        fetch(`https://b6a11-service-review-server-side-prantoc.vercel.app/add-review`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
