@@ -65,7 +65,7 @@ const AddService = () => {
                             </div>
                             <div className="mb-4">
                                 <label htmlFor="exampleInputDesc" className="form-label">Description</label>
-                                <textarea name="desc" className="form-control" id="" cols="45" rows="4"></textarea>
+                                <textarea name="desc" className="form-control" id="" cols="45" rows="4" required></textarea>
                             </div>
                             <button type="submit" className="btn btn-primary text-center col-12  rounded">
 

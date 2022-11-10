@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Card, Image } from 'react-bootstrap';
-import { FaPlus, FaStar } from 'react-icons/fa';
+import { Card, Image } from 'react-bootstrap';
+import { FaStar } from 'react-icons/fa';
 import banar from '../../../assets/imgs/banner/banner.png'
 const ReviewCard = () => {
     return (

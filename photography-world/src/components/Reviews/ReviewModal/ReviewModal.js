@@ -1,46 +1,8 @@
-import React, { useContext } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import React from 'react';
+import { Modal } from 'react-bootstrap';
 import { FaPlus } from 'react-icons/fa';
-import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import { errorToast, successToast } from '../../../toast/Toaster';
 
-const ReviewModal = ({ show, handleClose, service, id }) => {
-    const { loading, user } = useContext(AuthContext)
-    const handleAddReview = e => {
-        e.preventDefault()
-        const form = e.target
-        const rate = form.rate.value
-        const review = form.review.value
-        const serviceId = id
-        const userId = user.uid;
-        const createdAT = new Date()
-
-        const reviews = {
-            rate,
-            review,
-            serviceId,
-            userId
-        }
-
-        fetch(`http://localhost:5000/add-service`, {
-            method: "POST",
-            headers: {
-                'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
-            },
-            body: JSON.stringify(reviews),
-
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    successToast('successfully added review')
-                    form.reset()
-                }
-            })
-            .catch(err => errorToast(err))
-
-    }
+const ReviewModal = ({ show, handleClose, service, handleAddReview, loading }) => {
     return (
         <>
             <Modal show={show} onHide={handleClose}>
@@ -65,7 +27,7 @@ const ReviewModal = ({ show, handleClose, service, id }) => {
                             </div>
                         </div>
                         <div className="mb-4 d-block">
-                            <textarea placeholder='put your review' name="review" className="form-control" id="" cols="45" rows="4"></textarea>
+                            <textarea placeholder='put your review' name="review" className="form-control" id="" cols="45" rows="4" required></textarea>
                         </div>
                         <button type="submit" className="btn btn-primary text-center col-12  rounded">
 
