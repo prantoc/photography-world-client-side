@@ -47,7 +47,7 @@ const ServiceDetails = () => {
                                     <Button className='py-1' variant='primary' onClick={handleShow}><FaPlus></FaPlus>Add Review</Button>
                                 </div>
                                 <ReviewCard></ReviewCard>
-                                <ReviewModal show={show} handleClose={handleClose}></ReviewModal>
+                                <ReviewModal show={show} service={service_name} handleClose={handleClose} id={_id}></ReviewModal>
                             </div>
                         </div>
                     </Col>
