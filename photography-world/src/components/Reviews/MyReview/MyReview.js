@@ -46,7 +46,12 @@ const MyReview = () => {
 
                                 {
                                     reviews &&
-                                    reviews.map(review => <MyReviewRow key={review._id} allReviews={review}></MyReviewRow>)
+                                        reviews.length > 0 ?
+                                        reviews.map(review => <MyReviewRow key={review._id} allReviews={review}></MyReviewRow>)
+                                        :
+                                        <tr>
+                                            <h5 className='text-center text-white py-5'>No reviews found!</h5>
+                                        </tr>
                                 }
 
                             </tbody>

@@ -50,10 +50,10 @@ const Header = () => {
                                 <Navbar.Text className='d-flex' title={user.displayName}>
                                     <Dropdown>
                                         <Dropdown.Toggle className='border border-1 py-1' variant="outline-light" id="dropdown-basic">
-                                            <Image roundedCircle style={{ height: '28px' }} src={user.photoURL} onError={(e) => e.target.src = avatar} />
+                                            <Image roundedCircle style={{ height: '28px' }} src={user.photoURL || avatar} onError={(e) => e.target.src = avatar} />
                                         </Dropdown.Toggle>
                                         <Dropdown.Menu className='position-absolute end-100 translate-middle-x' style={{ zIndex: '9999' }}>
-                                            <Dropdown.Item >{user?.displayName}</Dropdown.Item>
+                                            <Dropdown.Item >{user?.displayName || 'User'}</Dropdown.Item>
                                             <Dropdown.Item onClick={userLogout}>Logout</Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
