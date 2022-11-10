@@ -21,7 +21,11 @@ const ServiceDetails = () => {
     useEffect(() => {
         const url = `http://localhost:5000/reviews?id=${service?._id}`;
         if (newReview) {
-            fetch(url)
+            fetch(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('ph')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                     setReviews(data)
@@ -29,7 +33,11 @@ const ServiceDetails = () => {
                 })
                 .catch(err => console.log(err))
         } else {
-            fetch(url)
+            fetch(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem('ph')}`
+                }
+            })
                 .then(res => res.json())
                 .then(data => {
                     setReviews(data)
@@ -71,7 +79,7 @@ const ServiceDetails = () => {
             method: "POST",
             headers: {
                 'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
+                authorization: `Bearer ${localStorage.getItem('ph')}`
             },
             body: JSON.stringify(addReview),
 

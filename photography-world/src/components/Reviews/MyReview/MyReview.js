@@ -7,21 +7,30 @@ import MyReviewRow from './MyReviewRow';
 
 const MyReview = () => {
     useTitle('My-Reviews')
-    const { user, setLoading, loading } = useContext(AuthContext)
+    const { user, setLoading, loading, userLogout } = useContext(AuthContext)
     const [reviews, setReviews] = useState();
     // get-reviews 
     useEffect(() => {
         const url = `http://localhost:5000/user-review?id=${user?.uid}`;
 
-        fetch(url)
-            .then(res => res.json())
+        fetch(url, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('ph')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    userLogout()
+                }
+                return res.json()
+            })
             .then(data => {
                 setReviews(data)
                 setLoading(false)
             })
             .catch(err => console.log(err))
 
-    }, [user?.uid, setLoading])
+    }, [user?.uid, setLoading, userLogout])
 
     //?delete-review
 
@@ -32,7 +41,7 @@ const MyReview = () => {
             fetch(`http://localhost:5000/review-delete/${id}`, {
                 method: "DELETE",
                 headers: {
-                    authorization: `Bearer ${localStorage.getItem('genius-token')}`
+                    authorization: `Bearer ${localStorage.getItem('ph')}`
                 }
             })
                 .then(res => res.json())
@@ -48,11 +57,20 @@ const MyReview = () => {
 
     const updateReview = (id, rate, review) => {
         setLoading(true)
+        if (!rate) {
+            setLoading(false)
+            return errorToast("You must set a rating!");
+        }
+        if (!review) {
+            setLoading(false)
+            return errorToast("You must set a review!");
+
+        }
         fetch(`http://localhost:5000/review-update/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('genius-token')}`
+                authorization: `Bearer ${localStorage.getItem('ph')}`
             },
             body: JSON.stringify({ rate: rate, review: review })
         })
