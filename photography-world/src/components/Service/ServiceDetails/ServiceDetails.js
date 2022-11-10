@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row, Spinner } from 'react-bootstrap';
 import { FaPlus, FaStar } from 'react-icons/fa';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useLoaderData } from 'react-router-dom';
@@ -7,9 +7,9 @@ import ReviewModal from '../../Reviews/ReviewModal/ReviewModal';
 import ReviewCard from '../../Reviews/Reviews/ReviewCard';
 import { errorToast, successToast } from '../../../toast/Toaster';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
 const ServiceDetails = () => {
-    const { loading, user } = useContext(AuthContext)
-    console.log(user);
+    const { loading, user, setLoading } = useContext(AuthContext)
     const service = useLoaderData();
     const { _id, service_name, img_url, price, desc } = service;
 
@@ -22,16 +22,22 @@ const ServiceDetails = () => {
         if (newReview) {
             fetch(url)
                 .then(res => res.json())
-                .then(data => setReviews(data))
+                .then(data => {
+                    setReviews(data)
+                    setLoading(false)
+                })
                 .catch(err => console.log(err))
         } else {
             fetch(url)
                 .then(res => res.json())
-                .then(data => setReviews(data))
+                .then(data => {
+                    setReviews(data)
+                    setLoading(false)
+                })
                 .catch(err => console.log(err))
         }
 
-    }, [service?._id, newReview])
+    }, [service?._id, newReview, setLoading])
 
 
     //? add-review 
@@ -88,49 +94,66 @@ const ServiceDetails = () => {
         <>
             <Container>
                 <Row>
-                    <Col md={12} className="my-5">
-                        <Card className='shadow rounded border-0 text-white service-details-card'>
-                            <Card.Header className='border-0' as="h3">{service_name}</Card.Header>
-                            <Card.Body>
-                                <PhotoProvider>
-                                    <PhotoView src={img_url}>
-                                        <Card.Img variant="top" src={img_url} className="mb-4 service-details-img " />
-                                    </PhotoView>
-                                </PhotoProvider>
-                                <Card.Text className='lh-base'>
-                                    {desc}
-                                </Card.Text>
-                            </Card.Body>
-                            <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
-                                <span className="badge bg-primary text-wrap" style={{ width: "12rem" }}>
-                                    Total Reviews
-                                    <FaStar className='text-warning mx-1' />
-                                    <small>{reviews && reviews.length}</small>
-                                </span>
-                                <span>
-                                    <h4 className='text-white'>${price}</h4>
-                                </span>
-                            </Card.Footer>
-                        </Card>
-                        <div className="card  main-review-card review-card-boxShadow mt-2">
-                            <div className="card-body">
-                                <div className='d-flex justify-content-between align-items-center'>
-                                    <h1 className=' text-white'>Uers Reviews</h1>
-                                    <Button className='py-1' variant='primary' onClick={handleShow}><FaPlus></FaPlus>Add Review</Button>
-                                </div>
-                                {
-                                    reviews &&
-                                        reviews.length > 0 ?
-                                        reviews.map(review => <ReviewCard key={review._id} getReview={review}></ReviewCard>)
-                                        :
+                    {
+                        loading ?
+                            <Spinner animation="border" role="status" className='text-white'>
+                                <span className="visually-hidden">Loading...</span>
+                            </Spinner>
+                            :
 
-                                        <h5 className='text-center text-white'>No reviews found!</h5>
-                                }
-                                {/* {reviews.length} */}
-                                <ReviewModal show={show} service={service_name} handleClose={handleClose} handleAddReview={handleAddReview} id={_id} loading={loading}></ReviewModal>
-                            </div>
-                        </div>
-                    </Col>
+                            loading === false && <Col md={12} className="my-5">
+                                <Card className='shadow rounded border-0 text-white service-details-card'>
+                                    <Card.Header className='border-0' as="h3">{service_name}</Card.Header>
+                                    <Card.Body>
+                                        <PhotoProvider>
+                                            <PhotoView src={img_url}>
+                                                <Card.Img variant="top" src={img_url} className="mb-4 service-details-img " />
+                                            </PhotoView>
+                                        </PhotoProvider>
+                                        <Card.Text className='lh-base'>
+                                            {desc}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer className="text-muted d-flex justify-content-between align-items-center">
+                                        <span className="badge bg-primary text-wrap" style={{ width: "12rem" }}>
+                                            Total Reviews
+                                            <FaStar className='text-warning mx-1' />
+                                            <small>{reviews && reviews.length}</small>
+                                        </span>
+                                        <span>
+                                            <h4 className='text-white'>${price}</h4>
+                                        </span>
+                                    </Card.Footer>
+                                </Card>
+                                <div className="card  main-review-card review-card-boxShadow mt-2">
+                                    <div className="card-body">
+                                        <div className='d-flex justify-content-between align-items-center'>
+                                            <h1 className=' text-white'>Uers Reviews</h1>
+                                            {loading ?
+                                                <Spinner animation="border" role="status" className='text-white'>
+                                                    <span className="visually-hidden">Loading...</span>
+                                                </Spinner>
+                                                :
+                                                loading === false &&
+                                                    user &&
+                                                    user.uid ?
+                                                    <Button className='py-1' variant='primary' onClick={handleShow}><FaPlus></FaPlus>Add Review</Button>
+                                                    :
+                                                    <Button className='py-1' variant='primary'><Link to="/login" className='nav-link'><FaPlus></FaPlus>Add Review</Link></Button>
+                                            }
+                                        </div>
+                                        {
+                                            reviews &&
+                                                reviews.length > 0 ?
+                                                reviews.map(review => <ReviewCard key={review._id} getReview={review}></ReviewCard>)
+                                                :
+
+                                                <h5 className='text-center text-white'>No reviews found!</h5>
+                                        }
+                                        <ReviewModal show={show} service={service_name} handleClose={handleClose} handleAddReview={handleAddReview} id={_id} loading={loading}></ReviewModal>
+                                    </div>
+                                </div>
+                            </Col>}
                 </Row>
             </Container>
         </>

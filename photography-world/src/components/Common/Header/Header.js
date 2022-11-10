@@ -40,6 +40,9 @@ const Header = () => {
                             <LinkContainer to="add-service">
                                 <Nav.Link>Add Service</Nav.Link>
                             </LinkContainer>
+                            <LinkContainer to="my-reviews">
+                                <Nav.Link>My Reviews</Nav.Link>
+                            </LinkContainer>
                         </Nav>
                         {
                             user

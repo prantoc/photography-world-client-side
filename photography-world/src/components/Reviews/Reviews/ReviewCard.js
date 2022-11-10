@@ -4,6 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import avatar from '../../../assets/imgs/user/man.png'
 const ReviewCard = ({ getReview }) => {
     const { rate, review, userName, userPhoto, createdAT } = getReview;
+
     return (
         <>
             <Card className='mb-5 border-0  rounded service-details-card service-details-card review-card-boxShadow mt-5'>

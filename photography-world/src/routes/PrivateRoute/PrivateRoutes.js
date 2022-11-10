@@ -8,9 +8,11 @@ const PrivateRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     let location = useLocation();
     if (loading) {
-        return <Spinner animation="border" role="status" style={{ margin: 'auto' }}>
-            <span className="visually-hidden">Loading...</span>
-        </Spinner>
+        return <div className='d-flex justify-content-center'>
+            <Spinner animation="border" role="status" className='text-white'>
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </div>
     }
     if (user && user.uid) {
         return children;
