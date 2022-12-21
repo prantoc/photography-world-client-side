@@ -30,6 +30,7 @@ const ServiceDetails = () => {
                 .then(data => {
                     setReviews(data)
                     setLoading(false)
+                    setNewReview(false)
                 })
                 .catch(err => console.log(err))
         } else {
@@ -90,7 +91,7 @@ const ServiceDetails = () => {
                     successToast('successfully added review')
                     form.reset()
                     setShow(false)
-                    setNewReview(true)
+                    setNewReview(data.acknowledged)
                 }
             })
             .catch(err => {
