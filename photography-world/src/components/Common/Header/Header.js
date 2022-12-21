@@ -37,12 +37,17 @@ const Header = () => {
                             <LinkContainer to="blog">
                                 <Nav.Link>Blog</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to="add-service">
-                                <Nav.Link>Add Service</Nav.Link>
-                            </LinkContainer>
-                            <LinkContainer to="my-reviews">
-                                <Nav.Link>My Reviews</Nav.Link>
-                            </LinkContainer>
+                            {user
+                                &&
+                                <>
+                                    <LinkContainer to="add-service">
+                                        <Nav.Link>Add Service</Nav.Link>
+                                    </LinkContainer>
+                                    <LinkContainer to="my-reviews">
+                                        <Nav.Link>My Reviews</Nav.Link>
+                                    </LinkContainer>
+                                </>
+                            }
                         </Nav>
                         {
                             user
