@@ -51,18 +51,21 @@ const Home = () => {
                 <Row>
                     {
                         loading
-                            ?
-                            <Spinner animation="border" role="status" className='text-white'>
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                            :
-                            <>
-                                {services.slice(0, 3).map(service =>
-                                    <ServiceCard key={service._id} service={service}></ServiceCard>
-                                )}
-                                <Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto"><Link className='nav-link' to="/services">See All <FaArrowRight></FaArrowRight></Link> </Button>
-                            </>
+                        &&
+                        <Spinner animation="border" role="status" className='text-white'>
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
                     }
+                    {
+                        services.length > 0
+                        &&
+                        services.slice(0, 3).map(service =>
+                            <ServiceCard key={service._id} service={service}></ServiceCard>
+                        )
+
+                    }
+                    {services.length > 0
+                        && <Button Button variant="primary px-5 py-2 my-4 rounded-pill col-3 text-center mx-auto"><Link className='nav-link' to="/services">See All <FaArrowRight></FaArrowRight></Link> </Button>}
                 </Row>
             </Container>
             {/* pictures-preview */}
