@@ -52,7 +52,7 @@ const SignUp = () => {
                 successToast(`Hi,${user.displayName}  You Logged in successfully`);
                 navigate('/')
             }).catch((e) => {
-                errorToast(e);
+                console.error(e);
             });
     }
 
