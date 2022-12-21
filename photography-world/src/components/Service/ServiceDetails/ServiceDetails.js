@@ -138,13 +138,15 @@ const ServiceDetails = () => {
                                     <div className="card-body">
                                         <div className='d-flex justify-content-between align-items-center'>
                                             <h1 className=' text-white'>Uers Reviews</h1>
-                                            {loading ?
+                                            {
+                                                loading &&
                                                 <Spinner animation="border" role="status" className='text-white'>
                                                     <span className="visually-hidden">Loading...</span>
                                                 </Spinner>
-                                                :
-                                                loading === false &&
-                                                    user &&
+
+                                            }
+                                            {
+                                                user &&
                                                     user.uid ?
                                                     <Button className='py-1' variant='primary' onClick={handleShow}><FaPlus></FaPlus>Add Review</Button>
                                                     :
