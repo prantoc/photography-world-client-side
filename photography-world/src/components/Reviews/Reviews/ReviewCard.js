@@ -10,7 +10,7 @@ const ReviewCard = ({ getReview }) => {
             <Card className='mb-5 border-0  rounded service-details-card service-details-card review-card-boxShadow mt-5'>
                 <Card.Header className='d-flex justify-content-between align-items-center text-white'>
                     <div className='d-flex'>
-                        <Image roundedCircle style={{ height: '56px' }} src={userPhoto} onError={(e) => e.target.src = avatar} />
+                        <Image roundedCircle style={{ height: '56px' }} src={userPhoto ? userPhoto : avatar} onError={(e) => e.target.src = avatar} />
                         <div className='ms-3'>
                             <span className='fw-bold d-block'>{userName ? userName : 'Anonymous'}</span>
                             <span className='text-secondary'>{createdAT}</span>
