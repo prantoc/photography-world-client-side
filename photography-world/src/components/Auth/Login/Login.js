@@ -80,7 +80,7 @@ const Login = () => {
                     })
             })
             .catch((e) => {
-                errorToast(e);
+                console.error(e);
             });
     }
 
